@@ -1,0 +1,27 @@
+{
+    "name": "periodic-custom-title",
+    "version": "1.0.0",
+    "description": "An Obsidian plugin that adds a custom title to periodic notes.",
+    "author": "RieN7",
+    "main": "main.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+        "obsidian": "github:obsidianmd/obsidian-api#master",
+        "preact": "10.26.4",
+        "tslib": "2.8.1",
+        "vite": "^6.2.2"
+    },
+    "devDependencies": {
+        "@preact/preset-vite": "^2.10.1",
+        "@types/node": "22.13.10",
+        "@typescript-eslint/eslint-plugin": "8.26.1",
+        "@typescript-eslint/parser": "8.26.1",
+        "eslint": "9.22.0",
+        "typescript": "5.8.2",
+        "vite-bundle-analyzer": "^0.18.0"
+    }
+}

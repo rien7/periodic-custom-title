@@ -1,0 +1,20 @@
+{
+    "type": "module",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "jsx": "react-jsx",
+        "jsxImportSource": "preact",
+        "module": "ESNext",
+        "target": "esnext",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "lib": [
+            "dom",
+            "esnext"
+        ],
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx"
+    ]
+}
