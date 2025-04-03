@@ -2,7 +2,7 @@
     "id": "periodic-custom-title",
     "name": "Periodic Custom Title",
     "description": "An Obsidian plugin that adds a custom title to periodic notes.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "RieN7",
     "authorUrl": "https://github.com/rien7/",
     "isDesktopOnly": false,
