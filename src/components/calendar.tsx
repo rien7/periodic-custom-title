@@ -165,11 +165,11 @@ interface CellDataResult {
   year: CellDataType;
 }
 
-async function getCellData(
+function getCellData(
   app: App,
   baseDate: Date,
   weekStartsOn: 7 | 1,
-): Promise<CellDataResult> {
+): CellDataResult {
   const year = baseDate.getFullYear();
   const month = baseDate.getMonth();
   const daysInMonth = getDaysInMonth(year, month);
@@ -196,7 +196,7 @@ async function getCellData(
       date,
       type: "prev-month-day",
       display: d,
-      path: await getPathByDate(app, "daily", date),
+      path: getPathByDate(app, "daily", date),
     });
   }
   for (let d = 1; d <= daysInMonth; d++) {
@@ -206,7 +206,7 @@ async function getCellData(
       date,
       type: "day",
       display: d,
-      path: await getPathByDate(app, "daily", date),
+      path: getPathByDate(app, "daily", date),
     });
   }
   const remainingCells = 42 - dayData.length; // 6 rows * 7 days = 42
@@ -217,7 +217,7 @@ async function getCellData(
       date,
       type: "next-month-day",
       display: d,
-      path: await getPathByDate(app, "daily", date),
+      path: getPathByDate(app, "daily", date),
     });
   }
 
@@ -230,7 +230,7 @@ async function getCellData(
       date,
       type: "week",
       display: weekNum.toString(),
-      path: await getPathByDate(app, "weekly", date),
+      path: getPathByDate(app, "weekly", date),
     });
   }
 
@@ -239,7 +239,7 @@ async function getCellData(
     date: firstDateOfMonth,
     type: "month",
     display: month + 1,
-    path: await getPathByDate(app, "monthly", firstDateOfMonth),
+    path: getPathByDate(app, "monthly", firstDateOfMonth),
   };
 
   const yearData: CellDataType = {
@@ -247,7 +247,7 @@ async function getCellData(
     date: new Date(year, 0, 1),
     type: "year",
     display: year,
-    path: await getPathByDate(app, "yearly", new Date(year, 0, 1)),
+    path: getPathByDate(app, "yearly", new Date(year, 0, 1)),
   };
 
   return {

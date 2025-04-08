@@ -19,7 +19,15 @@ export default defineConfig({
             formats: ["cjs"],
         },
         rollupOptions: {
-            external: ["obsidian", "fs", "os", "path"],
+            external: [
+                "obsidian",
+                "fs",
+                "os",
+                "path",
+                "@codemirror/language",
+                "@codemirror/state",
+                "@codemirror/view",
+            ],
             output: {
                 exports: "default",
                 entryFileNames: "[name].js",

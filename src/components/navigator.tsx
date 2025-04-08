@@ -56,7 +56,7 @@ export const Navigator = ({ periodic }: { periodic: PeriodicReturn }) => {
     setShowCalendar(!showCalendar);
   };
 
-  const handleBtnClick = async (offset: -1 | 1) => {
+  const handleBtnClick = (offset: -1 | 1) => {
     const _date = date;
     switch (type) {
       case "daily":
@@ -71,7 +71,7 @@ export const Navigator = ({ periodic }: { periodic: PeriodicReturn }) => {
       case "yearly":
         _date.add(offset, "y");
     }
-    const path = await getPathByMoment(plugin.app, type, _date);
+    const path = getPathByMoment(plugin.app, type, _date);
     openOrCreate(plugin.app, type, path);
   };
 

@@ -8,210 +8,235 @@ If your plugin does not need CSS, delete this file.
 */
 
 .bj-root {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 16px;
-	margin-bottom: var(--inline-title-margin-bottom);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: var(--inline-title-margin-bottom);
 }
 
 .bj-root[hidden] {
-	display: none;
+    display: none;
 }
 
 .alias-title {
-	display: inline;
-	margin-bottom: 0 !important;
+    display: inline;
+    margin-bottom: 0 !important;
 }
 
 #bj-navigator-root {
-	display: inline;
+    display: inline;
 }
 
 .bj-today {
-	color: color-mix(in srgb, var(--color-accent) 90%, black 10%);
+    color: color-mix(in srgb, var(--color-accent) 90%, black 10%);
 }
 
 .theme-dark .bj-today {
-	color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 .bj-navigator {
-	z-index: 10;
-	display: inline-flex;
-	gap: 4px;
-	/* border: 1px solid #d4d4d866; */
-	padding: 4px;
-	border-radius: 8px;
+    z-index: 10;
+    display: inline-flex;
+    gap: 4px;
+    /* border: 1px solid #d4d4d866; */
+    padding: 4px;
+    border-radius: 8px;
 }
 .theme-dark .bj-navigator {
-	/* border: 1px solid #52525b; */
+    /* border: 1px solid #52525b; */
 }
 
 .bj-navi-cal {
-	opacity: 0.4;
-	transition: 0.2s ease-in-out all;
+    opacity: 0.4;
+    transition: 0.2s ease-in-out all;
 }
 
 .bj-navi-prev,
 .bj-navi-next {
-	opacity: 0.2;
-	transition: 0.2s ease-in-out all;
+    opacity: 0.2;
+    transition: 0.2s ease-in-out all;
 }
 
 .bj-navi-prev:hover,
 .bj-navi-cal:hover,
 .bj-navi-next:hover {
-	opacity: 0.8;
-	background-color: #d4d4d888;
+    opacity: 0.8;
+    background-color: #d4d4d888;
 }
 
 .bj-navigator > div {
-	z-index: 20;
-	line-height: 0;
-	border-radius: 4px;
-	padding: 2px;
-	color: #acacac;
+    z-index: 20;
+    line-height: 0;
+    border-radius: 4px;
+    padding: 2px;
+    color: #acacac;
 }
 
 .bj-navigator,
 .bj-navigator > div {
-	color: var(--text-normal);
+    color: var(--text-normal);
 }
 
 /* CALENDAR */
 div:has(.bj-calendar) {
-	z-index: 30;
+    z-index: 30;
 }
 .bj-calendar {
-	z-index: 30;
-	width: 249px;
-	border-radius: 12px;
-	background: #fff;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	padding: 12px;
+    z-index: 30;
+    width: 249px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
 }
 
 .theme-dark .bj-calendar {
-	background: #333;
+    background: #333;
 }
 
 .bj-calendar-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px;
 }
 
 .bj-calendar-grid {
-	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	gap: 4px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
 }
 
 .bj-calendar-cell {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 6px;
-	cursor: pointer;
-	transition:
-		background-color 0.2s,
-		color 0.2s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
 }
 
 .bj-calendar-cell:hover {
-	background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .theme-dark .bj-calendar-cell:hover {
-	background-color: #606060;
+    background-color: #606060;
 }
 
 .bj-calendar-nav {
-	display: inline-flex;
-	line-height: 0;
-	align-items: center;
-	gap: 4px;
+    display: inline-flex;
+    line-height: 0;
+    align-items: center;
+    gap: 4px;
 }
 .bj-calendar-nav > div {
-	border-radius: 4px;
-	padding: 2px;
+    border-radius: 4px;
+    padding: 2px;
 }
 
 .bj-calendar-nav > div:hover {
-	background-color: #d4d4d844;
+    background-color: #d4d4d844;
 }
 
 .bj-calendar-today {
-	padding: 4px !important;
+    padding: 4px !important;
 }
 
 .bj-calendar-today > svg {
-	width: 16px;
-	height: 16px;
+    width: 16px;
+    height: 16px;
 }
 
 .bj-calendar-date {
-	font-size: 12px;
-	width: 26px;
-	height: 26px;
+    font-size: 12px;
+    width: 26px;
+    height: 26px;
 }
 
 .bj-calendar-cell.bj-cell-selected {
-	background-color: #52525b !important;
-	color: #fff;
+    background-color: #52525b !important;
+    color: #fff;
 }
 
 .bj-calendar-cell.bj-note-today {
-	background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
 .bj-calendar-cell.bj-note-exist {
-	text-decoration: underline;
-	text-decoration-color: #acacac;
-	text-decoration-thickness: 2px;
-	text-underline-offset: 2px;
+    text-decoration: underline;
+    text-decoration-color: #acacac;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
 }
 
 .bj-calendar-year-label,
 .bj-calendar-month-label {
-	padding-left: 2px;
-	padding-right: 2px;
-	padding-top: 1px;
-	padding-bottom: 1px;
-	font-weight: 500;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-weight: 500;
 }
 
 .bj-calendar-year-label,
 .bj-calendar-cell.bj-calendar-date-other-month {
-	color: #d4d4d8;
+    color: #d4d4d8;
 }
 
 .theme-dark .bj-calendar-year-label,
 .theme-dark .bj-calendar-cell.bj-calendar-date-other-month {
-	color: #a4a4a8;
+    color: #a4a4a8;
 }
 
 .bj-calendar-year-label {
-	font-size: 14px;
+    font-size: 14px;
 }
 .bj-calendar-month-label {
-	font-size: 16px;
+    font-size: 16px;
 }
 .bj-calendar-weekday {
-	color: #d4d4d8;
-	height: 13px !important;
-	font-size: 12px;
+    color: #d4d4d8;
+    height: 13px !important;
+    font-size: 12px;
 }
 .bj-calendar-week-number {
-	color: #d4d4d8;
-	font-size: 12px;
+    color: #d4d4d8;
+    font-size: 12px;
 }
 .bj-calendar-weekday,
 .bj-calendar-date,
 .bj-calendar-week-number {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.bj-internal-link {
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: color-mix(
+        in srgb,
+        var(--link-color) 20%,
+        white 0%
+    ) !important;
+    transition: ease-in-out 0.35s background-color;
+}
+.bj-internal-link:hover {
+    background-color: color-mix(
+        in srgb,
+        var(--link-color) 20%,
+        white 10%
+    ) !important;
+}
+.bj-internal-icon svg {
+    width: var(--font-text-size);
+    height: var(--font-text-size);
+}
+.bj-internal-icon {
+    vertical-align: middle;
+    padding-right: 4px;
 }

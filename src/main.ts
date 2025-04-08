@@ -6,6 +6,7 @@ import {
   DEFAULT_PERIODIC_SETTING,
   SampleSettingTab,
 } from "./components/settingTab";
+import { periodicLinkPlugin } from "./components/cm-plugin";
 
 export interface PeriodicConfig {
   enabled: boolean;
@@ -47,22 +48,23 @@ export default class PeriodicCustomTitle extends Plugin {
     this.app.workspace.on("file-open", this.handleFileOpen);
 
     this.addSettingTab(new SampleSettingTab(this.app, this));
+    this.registerEditorExtension(periodicLinkPlugin);
 
-    getAllRelativeSetting(this.app, this.settings).then((files) => {
-      let cache = this.app.metadataCache as any;
-      let _getLinkSuggestions = cache.getLinkSuggestions;
-      cache._getLinkSuggestions = _getLinkSuggestions;
-      let _wrapperGetLinkSuggestions = function () {
-        let result = _getLinkSuggestions.call(this);
-        return [
-          ...files.map((file) => ({
-            path: file.text,
-            file: file.file,
-          })),
-        ].concat(result);
-      };
-      cache.getLinkSuggestions = _wrapperGetLinkSuggestions;
-    });
+    const files = getAllRelativeSetting(this.app, this.settings);
+    let cache = this.app.metadataCache as any;
+    let _getLinkSuggestions = cache.getLinkSuggestions;
+    cache._getLinkSuggestions = _getLinkSuggestions;
+    console.log(files);
+    let _wrapperGetLinkSuggestions = function () {
+      let result = _getLinkSuggestions.call(this);
+      return [
+        ...files.map((file) => ({
+          path: file.text,
+          file: file.file,
+        })),
+      ].concat(result);
+    };
+    cache.getLinkSuggestions = _wrapperGetLinkSuggestions;
   }
 
   onunload() {
@@ -86,13 +88,9 @@ export default class PeriodicCustomTitle extends Plugin {
   }
 }
 
-async function getAllRelativeSetting(
-  app: App,
-  setting: PeriodicCustomTitleSettings,
-) {
+function getAllRelativeSetting(app: App, setting: PeriodicCustomTitleSettings) {
   let files: { text: string; file: TFile }[] = [];
   let now = new Date();
-  const promises: Promise<void>[] = [];
   (["daily", "weekly", "monthly", "yearly"] as PeriodicType[]).forEach(
     (type) => {
       if (setting[type].enabled) {
@@ -102,22 +100,17 @@ async function getAllRelativeSetting(
             now.getMonth() + (type === "monthly" ? s.diff : 0),
             now.getDate() + (type === "weekly" ? s.diff * 7 : s.diff),
           );
-          promises.push(
-            (async () => {
-              let path = await getPathByDate(app, type, date);
-              let file = app.vault.getFileByPath(path);
-              if (file !== null) {
-                files.push({
-                  text: file.parent.path + "/" + file.basename + "/" + s.text,
-                  file,
-                });
-              }
-            })(),
-          );
+          let path = getPathByDate(app, type, date);
+          let file = app.vault.getFileByPath(path);
+          if (file !== null) {
+            files.push({
+              text: file.parent.path + "/" + file.basename + "/" + s.text,
+              file,
+            });
+          }
         });
       }
     },
   );
-  await Promise.all(promises);
   return files;
 }

@@ -9,7 +9,10 @@ import { PluginContext } from "src/usePlugin";
 
 const rootMap: Map<string, any> = new Map();
 
-export async function handleFileOpen(plugin: MyPlugin, _fileView?: FileView) {
+export function handleFileOpen(
+  plugin: PeriodicCustomTitle,
+  _fileView?: FileView,
+) {
   const fileView =
     _fileView ?? plugin.app.workspace.getActiveViewOfType(FileView);
   if (!fileView) return;
@@ -20,7 +23,7 @@ export async function handleFileOpen(plugin: MyPlugin, _fileView?: FileView) {
   const file = fileView.file;
   if (!file) return;
 
-  const periodic = await getPeriodic(plugin.app, file);
+  const periodic = getPeriodic(plugin.app, file);
   if (!periodic) {
     removeRoot(parentEl);
     return;
