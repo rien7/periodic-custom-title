@@ -40,7 +40,26 @@ export default class PeriodicCustomTitle extends Plugin {
     window.moment.updateLocale(this.settings.language, {
       week: { dow: this.settings.firstDayOfWeek },
     });
-    this.handleFileOpen = () => handleFileOpen(this);
+    this.handleFileOpen = () => {
+      handleFileOpen(this);
+      const files = getAllRelativeSetting(this.app, this.settings);
+      let cache = this.app.metadataCache as any;
+      if (!cache._getLinkSuggestions) {
+        let _getLinkSuggestions = cache.getLinkSuggestions;
+        cache._getLinkSuggestions = _getLinkSuggestions;
+      }
+      let _getLinkSuggestions = cache._getLinkSuggestions;
+      let _wrapperGetLinkSuggestions = function () {
+        let result = _getLinkSuggestions.call(this);
+        return [
+          ...files.map((file) => ({
+            path: file.text,
+            file: file.file,
+          })),
+        ].concat(result);
+      };
+      cache.getLinkSuggestions = _wrapperGetLinkSuggestions;
+    };
     this.app.workspace.iterateAllLeaves((leaf) => {
       if (!(leaf.view instanceof FileView)) return;
       handleFileOpen(this, leaf.view);
@@ -49,22 +68,6 @@ export default class PeriodicCustomTitle extends Plugin {
 
     this.addSettingTab(new SampleSettingTab(this.app, this));
     this.registerEditorExtension(periodicLinkPlugin);
-
-    const files = getAllRelativeSetting(this.app, this.settings);
-    let cache = this.app.metadataCache as any;
-    let _getLinkSuggestions = cache.getLinkSuggestions;
-    cache._getLinkSuggestions = _getLinkSuggestions;
-    console.log(files);
-    let _wrapperGetLinkSuggestions = function () {
-      let result = _getLinkSuggestions.call(this);
-      return [
-        ...files.map((file) => ({
-          path: file.text,
-          file: file.file,
-        })),
-      ].concat(result);
-    };
-    cache.getLinkSuggestions = _wrapperGetLinkSuggestions;
   }
 
   onunload() {
